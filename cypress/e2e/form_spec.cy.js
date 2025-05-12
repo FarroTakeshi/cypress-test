@@ -30,6 +30,8 @@ describe('Formulario Test', () => {
     cy.get('#datepicker').type(formattedDate);
 
     cy.get('.btn').click();
-
+    cy.get('.alert.alert-success', { timeout: 1000 }).should('exist')
+      .should('have.css', 'background-color', 'rgb(212, 237, 218)')
+      .should('have.css', 'color', 'rgb(21, 87, 36)');
   });
 });

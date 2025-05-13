@@ -1,33 +1,31 @@
-let days_before = 5;
+let days_before = -5;
 let days_after = 10;
 var new_date;
-var formatted_date;
+var formatted_date_before;
+var formatted_date_after;
 const today = new Date();
+
+//función para recalcular fecha
+function recalculateDate(current_date, days) {
+  var formatted_date;
+  //Capturamos la nueva fecha deseada tomando en cuenta la zona horaria actual
+  new_date = new Date(current_date);
+  new_date.setDate(today.getDate() + days);
+  new_date.setHours(0, 0, 0, 0);
+  console.log('new date is ' + `${new_date}`)
+
+  const month = String(new_date.getMonth() + 1).padStart(2, '0'); // Mes en formato 01-12
+  const day = String(new_date.getDate()).padStart(2, '0');        // Día en formato 01-31
+  const year = new_date.getFullYear();
+  return formatted_date = `${month}/${day}/${year}`;
+};
 
 describe('Formulario Test', () => {
   describe('Test con fecha X días anteriores', () => {
-    //Capturamos la nueva fecha deseada tomando en cuenta la zona horaria actual
-    new_date = new Date(today);
-    new_date.setDate(today.getDate() - days_before);
-    new_date.setHours(0, 0, 0, 0);
-
-    const month_before = String(new_date.getMonth() + 1).padStart(2, '0'); // Mes en formato 01-12
-    const day_before = String(new_date.getDate()).padStart(2, '0');        // Día en formato 01-31
-    const year_before = new_date.getFullYear();
-    formatted_date = `${month_before}/${day_before}/${year_before}`;
-
-    //Capturamos la nueva fecha deseada tomando en cuenta la zona horaria actual
-    new_date = new Date(today);
-    new_date.setDate(today.getDate() + days_after);
-    new_date.setHours(0, 0, 0, 0);
-
-    const month_after = String(new_date.getMonth() + 1).padStart(2, '0'); // Mes en formato 01-12
-    const day_after = String(new_date.getDate()).padStart(2, '0');        // Día en formato 01-31
-    const year_after = new_date.getFullYear();
-    formatted_date = `${month_after}/${day_after}/${year_after}`;
+    formatted_date_before = recalculateDate(today, days_before);
 
     it('Llenar el formulario con fecha ' + 
-        `${days_before}` 
+        `${Math.abs(days_before)}`
         + ' días antes', () => {
       // Visitar la página
       cy.visit('/form');
@@ -41,7 +39,7 @@ describe('Formulario Test', () => {
       cy.get('#select-menu')
         .should('have.value', '0');
       cy.get('#select-menu').select('3');
-      cy.get('#datepicker').type(formatted_date);
+      cy.get('#datepicker').type(formatted_date_before);
   
       cy.get('.btn').click();
       cy.get('.alert.alert-success', { timeout: 1000 }).should('exist')
@@ -52,15 +50,7 @@ describe('Formulario Test', () => {
   });
 
   describe('Test con fecha X días posteriores', () => {
-    //Capturamos la nueva fecha deseada tomando en cuenta la zona horaria actual
-    new_date = new Date(today);
-    new_date.setDate(today.getDate() + days_after);
-    new_date.setHours(0, 0, 0, 0);
-
-    const month = String(new_date.getMonth() + 1).padStart(2, '0'); // Mes en formato 01-12
-    const day = String(new_date.getDate()).padStart(2, '0');        // Día en formato 01-31
-    const year = new_date.getFullYear();
-    formatted_date = `${month}/${day}/${year}`;
+    formatted_date_after = recalculateDate(today, days_after);
 
     it('Llenar el formulario con fecha posterior a los ' + 
         `${days_after}` 
@@ -77,7 +67,7 @@ describe('Formulario Test', () => {
       cy.get('#select-menu')
         .should('have.value', '0');
       cy.get('#select-menu').select('3');
-      cy.get('#datepicker').type(formatted_date);
+      cy.get('#datepicker').type(formatted_date_after);
   
       cy.get('.btn').click();
       cy.get('.alert.alert-success', { timeout: 1000 }).should('exist')

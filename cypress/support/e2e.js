@@ -15,3 +15,8 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+/*afterEach(() => {
+    // Código que deseas ejecutar después de todas las pruebas
+    cy.log('Esto se ejecuta después de todas las pruebas en todos los archivos');
+    // Aquí puedes agregar cualquier otra acción de limpieza que necesites
+});*/

@@ -5,6 +5,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    baseUrl: 'https://formy-project.herokuapp.com'
+    baseUrl: 'https://formy-project.herokuapp.com',
+    //supportFile: "cypress/support/e2e.js"
   },
 });

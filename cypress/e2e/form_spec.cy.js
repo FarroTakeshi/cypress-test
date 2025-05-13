@@ -32,6 +32,7 @@ describe('Formulario Test', () => {
     cy.get('.btn').click();
     cy.get('.alert.alert-success', { timeout: 1000 }).should('exist')
       .should('have.css', 'background-color', 'rgb(212, 237, 218)')
-      .should('have.css', 'color', 'rgb(21, 87, 36)');
+      .should('have.css', 'color', 'rgb(21, 87, 36)')
+      .should('contain', 'The form was successfully submitted!')
   });
 });

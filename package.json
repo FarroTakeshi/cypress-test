@@ -16,7 +16,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "cy:run-default": "cypress run --spec cypress/e2e/todo_spec.cy.js",
+    "cy:run-headless": "cypress run --headless --spec cypress/e2e/todo_spec.cy.js"
   },
   "devDependencies": {
     "cypress": "^14.3.3"

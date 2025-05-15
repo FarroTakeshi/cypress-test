@@ -1,5 +1,5 @@
 //función para recalcular fecha de acuerdo a la cantidad que se proporciona
-export function recalculateDate(current_date, days) {
+function recalculateDate(current_date, days) {
     var formatted_date;
     var new_date;
     //Capturamos la nueva fecha deseada tomando en cuenta la zona horaria actual
@@ -13,3 +13,23 @@ export function recalculateDate(current_date, days) {
     const year = new_date.getFullYear();
     return formatted_date = `${month}/${day}/${year}`;
 };
+
+function csvToJson(data) {
+  var lines = data.split("\n");
+  var result = [];
+  var headers = lines[0].split(",");
+  //console.log('headers: ' + `${headers}`)
+  for(var i = 1; i < lines.length; i++) {
+    var obj = {};
+    var current_line = lines[i].split(",");
+    for (var j = 0; j < headers.length; j++) {
+      //console.log('headers[' + `${j}` + ']: ' + `${headers[j]}`)
+      obj[headers[j].trim()] = current_line[j].replace(/\r?\n|\r/g, "");
+    }
+    result.push(obj);
+  }
+  //console.log(result);
+  return result
+}
+
+module.exports = {recalculateDate,csvToJson};

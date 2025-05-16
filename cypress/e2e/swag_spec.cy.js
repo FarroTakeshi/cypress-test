@@ -29,7 +29,7 @@ describe('Test Web Swag Labs', function() {
     cy.get('[data-test="error"]').should('contain.text', 'Epic sadface: Username and password do not match any user in this service');
   });
 
-  it.only('Verificar login correcto mediante comando personalizado', () => {
+  it('Verificar login correcto mediante comando personalizado', () => {
     cy.loginSwagLabs('standard_user', 'secret_sauce');
 
     cy.url().should('eq', 'https://www.saucedemo.com/inventory.html');

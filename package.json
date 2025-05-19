@@ -33,5 +33,10 @@
     "cypress/e2e/[filepath]/**/*.{js,ts}",
     "cypress/e2e/[filepath].{js,ts}",
     "cypress/support/step_definitions/**/*.{js,ts}"
-  ]
+  ],
+  "cypress-cucumber-preprocessor": {
+    "html": {
+      "enabled": true
+    }
+  }
 }

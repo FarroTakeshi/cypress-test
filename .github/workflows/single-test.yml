@@ -5,7 +5,7 @@ on: [push]
 jobs:
   test1: 
     name: Cypress with Cucumber Test
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.2
       

@@ -23,3 +23,14 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('loginSwagLabs', (username, password) => {
+  cy.get('input#user-name').type(username);
+  cy.get('input#password').type(password);
+  cy.get('#login-button').click();
+});
+
+Cypress.Commands.add('logoutSwagLabs', () => {
+  cy.get('#react-burger-menu-btn').click();
+  cy.get('#logout_sidebar_link').click();
+});

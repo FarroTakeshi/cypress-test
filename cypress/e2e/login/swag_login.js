@@ -53,5 +53,5 @@ When("hago clic en el botón de cerrar sesión", () => {
 
 Then("debería cerrar sesión dirigiéndome a la página de inicio", () => {
   cy.url().should('eq', 'https://www.saucedemo.com/');
-  cy.get('.login_logo').should('have.text', 'Swag Laboratorio')
+  cy.get('.login_logo').should('have.text', 'Swag Labs')
 });

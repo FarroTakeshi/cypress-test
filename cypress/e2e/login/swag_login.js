@@ -33,3 +33,25 @@ Then("debería mostrarse con un fondo de color {string}", (hexadecimal_code) => 
   cy.get(".error-message-container.error")
     .should('have.css', 'background-color', hexToRgb(hexadecimal_code))
 });
+
+Given("inicio sesión exitosamente en SwagLabs", () => {
+  cy.visit('https://www.saucedemo.com/');
+  
+  cy.get("input#user-name").type("standard_user");
+  cy.get("input#password").type("secret_sauce");
+  
+  cy.get("#login-button").click();
+});
+
+When("hago clic en el ícono de hamburguesa", () => {
+  cy.get('#react-burger-menu-btn').click();
+});
+
+When("hago clic en el botón de cerrar sesión", () => {
+  cy.get('#logout_sidebar_link').click();
+});
+
+Then("debería cerrar sesión dirigiéndome a la página de inicio", () => {
+  cy.url().should('eq', 'https://www.saucedemo.com/');
+  cy.get('.login_logo').should('have.text', 'Swag Laboratorio')
+});

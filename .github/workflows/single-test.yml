@@ -36,7 +36,7 @@ jobs:
           npx cypress version
 
       - name: Cypress test
-        run: npm run cy:run:cucumber
+        run: npm run cy:run-cloud
         env:
           CYPRESS_RECORD_KEY: 06615e17-42d8-4003-a10b-5a0d69d299ff
           TERM: xterm

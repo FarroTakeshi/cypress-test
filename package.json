@@ -22,6 +22,16 @@
     "cy:run-cloud": "cypress run --record --key 06615e17-42d8-4003-a10b-5a0d69d299ff"
   },
   "devDependencies": {
-    "cypress": "^14.3.3"
-  }
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.5",
+    "cypress": "^14.3.3",
+    "esbuild": "^0.25.4"
+  },
+  "dependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^22.0.1"
+  },
+  "stepDefinitions": [
+    "cypress/e2e/[filepath]/**/*.{js,ts}",
+    "cypress/e2e/[filepath].{js,ts}",
+    "cypress/support/step_definitions/**/*.{js,ts}"
+  ]
 }

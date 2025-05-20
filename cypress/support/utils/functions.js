@@ -32,4 +32,17 @@ function csvToJson(data) {
   return result
 }
 
-module.exports = {recalculateDate,csvToJson};
+function hexToRgb(hex) {
+  // Remove the hash (#) at the start if present
+  hex = hex.replace(/^#/, '');
+
+  // Parse the r, g, b values from the hex string
+  let bigint = parseInt(hex, 16);
+  let r = (bigint >> 16) & 255;
+  let g = (bigint >> 8) & 255;
+  let b = bigint & 255;
+
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
+module.exports = {recalculateDate, csvToJson, hexToRgb};

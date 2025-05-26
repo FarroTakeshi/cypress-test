@@ -1,32 +1,34 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { hexToRgb } from "../../support/utils/functions"
+import loginPage from "../pages/swaglabs/loginPage";
+import inventoryPage from "../pages/swaglabs/inventoryPage";
 
 Given("visito la web de SwagLabs", () => {
   cy.visit('https://www.saucedemo.com/');
 });
 
 When("introduzco las credenciales correctas", () => {
-  cy.get("input#user-name").type("standard_user");
-  cy.get("input#password").type("secret_sauce");
+  loginPage.typeUsername('standard_user');
+  loginPage.typePassword('secret_sauce');
 });
 
 When("introduzco las credenciales incorrectas", () => {
-  cy.get("input#user-name").type("standard_user");
-  cy.get("input#password").type("bad_password");
+  loginPage.typeUsername('standard_user');
+  loginPage.typePassword('bad_password');
 });
 
 When("hago clic en el botón de inicio de sesión", () => {
-  cy.get("#login-button").click();
+  loginPage.clickBotonLogin();
 });
 
 Then("debería ser redirigido a la página de Products", () => {
   cy.url().should('eq', 'https://www.saucedemo.com/inventory.html');
   cy.location('pathname').should('eq', '/inventory.html');
-  cy.get('[data-test="title"]').should('contain.text', 'Products');
+  inventoryPage.elements.title_span().should('contain.text', 'Products');
 });
 
 Then("debería mostrarse un mensaje de error", () => {
-  cy.get("h3[data-test=error]").contains("Username and password do not match any user in this service");
+  loginPage.elements.error_message().contains("Username and password do not match any user in this service");
 });
 
 Then("debería mostrarse con un fondo de color {string}", (hexadecimal_code) => {
@@ -37,18 +39,18 @@ Then("debería mostrarse con un fondo de color {string}", (hexadecimal_code) => 
 Given("inicio sesión exitosamente en SwagLabs", () => {
   cy.visit('https://www.saucedemo.com/');
   
-  cy.get("input#user-name").type("standard_user");
-  cy.get("input#password").type("secret_sauce");
+  loginPage.typeUsername('standard_user');
+  loginPage.typePassword('secret_sauce');
   
-  cy.get("#login-button").click();
+  loginPage.clickBotonLogin();
 });
 
 When("hago clic en el ícono de hamburguesa", () => {
-  cy.get('#react-burger-menu-btn').click();
+  inventoryPage.clickBurgerMenu();
 });
 
 When("hago clic en el botón de cerrar sesión", () => {
-  cy.get('#logout_sidebar_link').click();
+  inventoryPage.clickLogoutOption();
 });
 
 Then("debería cerrar sesión dirigiéndome a la página de inicio", () => {

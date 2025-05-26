@@ -19,7 +19,9 @@
     "cy:open": "cypress open",
     "cy:run-default": "cypress run --spec cypress/e2e/todo_spec.cy.js",
     "cy:run-headless": "cypress run --headless --spec cypress/e2e/todo_spec.cy.js",
-    "cy:run-cloud": "cypress run --record --key 06615e17-42d8-4003-a10b-5a0d69d299ff"
+    "cy:run-cloud": "cypress run --record --key 06615e17-42d8-4003-a10b-5a0d69d299ff",
+    "cy:run:cucumber": "cypress run --headless --spec cypress/e2e/login/swag_login.feature",
+    "cy:run:smoke-tests": "cypress run --record --key 06615e17-42d8-4003-a10b-5a0d69d299ff --env tags=@smokeTest"
   },
   "devDependencies": {
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.5",
@@ -33,5 +35,10 @@
     "cypress/e2e/[filepath]/**/*.{js,ts}",
     "cypress/e2e/[filepath].{js,ts}",
     "cypress/support/step_definitions/**/*.{js,ts}"
-  ]
+  ],
+  "cypress-cucumber-preprocessor": {
+    "html": {
+      "enabled": false
+    }
+  }
 }

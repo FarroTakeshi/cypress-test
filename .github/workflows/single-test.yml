@@ -1,0 +1,52 @@
+name: Single Test
+
+on: [push]
+
+jobs:
+  test1: 
+    name: Cypress with Cucumber Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.2.2
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: package.json
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Cache Cypress binary
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+
+      - name: install dependencies
+        env:
+          CI: 1
+        run: |
+          npm ci
+          npx cypress verify
+          npx cypress info
+          npx cypress version
+
+      - name: Cypress test
+        run: npm run cy:run:smoke-tests
+        env:
+          CYPRESS_RECORD_KEY: 06615e17-42d8-4003-a10b-5a0d69d299ff
+          TERM: xterm
+
+      - uses: actions/upload-artifact@v4
+        # there might be no screenshots created when:
+        # - there are no test failures
+        # so only upload screenshots if previous step has failed
+        if: failure()
+        with:
+          name: screenshots
+          path: cypress/screenshots
+          

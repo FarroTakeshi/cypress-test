@@ -3,7 +3,7 @@ const { defineConfig } = require("cypress");
 module.exports = defineConfig({
   projectId: 'z31xik',
   e2e: {
-    specPattern: '**/*.feature',
+    specPattern: '**/*.{cy.js,feature}',
     async setupNodeEvents(on, config) {
       const createEsbuildPlugin = require('@badeball/cypress-cucumber-preprocessor/esbuild').createEsbuildPlugin
       const createBundler = require('@bahmutov/cypress-esbuild-preprocessor')

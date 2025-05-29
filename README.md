@@ -3,6 +3,7 @@
 This is a project that I created to practice Cypress and the integrations with differents tools like:
 - cypress-cucumber-preprocessor
 - Github Action
+- Cypress Cloud
 
 ## Requirements
 You need install previously:

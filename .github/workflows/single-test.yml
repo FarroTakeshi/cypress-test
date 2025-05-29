@@ -38,7 +38,7 @@ jobs:
       - name: Cypress test
         run: npm run cy:run:smoke-tests
         env:
-          CYPRESS_RECORD_KEY: 06615e17-42d8-4003-a10b-5a0d69d299ff
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_ENV_CERT }}
           TERM: xterm
 
       - uses: actions/upload-artifact@v4

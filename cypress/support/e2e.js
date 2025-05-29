@@ -20,3 +20,5 @@ import './commands'
     cy.log('Esto se ejecuta después de todas las pruebas en todos los archivos');
     // Aquí puedes agregar cualquier otra acción de limpieza que necesites
 });*/
+
+import "allure-cypress";

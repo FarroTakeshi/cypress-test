@@ -1,3 +1,6 @@
+import * as allure from "allure-js-commons";
+import { ContentType } from "allure-js-commons";
+
 describe('Prueba Todo', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8080/todo')
@@ -10,6 +13,12 @@ describe('Prueba Todo', () => {
   it('Deberia tener la cantidad de elementos en el listado', () => {
     cy.get('div > section >ul.todo-list li')
       .should('have.length', 3);
+    allure.attachment("Text file", "This is the file content.", ContentType.TEXT);
+
+    allure.attachmentPath("Screenshot", "/screenshots/todo/image.png", {
+      contentType: ContentType.PNG,
+      fileExtension: "png",
+    });
   });
 
   it('Deberian haberse agregado elementos al listado', () => {

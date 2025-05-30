@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.5",
+    "allure-cypress": "^3.2.2",
     "cypress": "^14.3.3",
     "esbuild": "^0.25.4"
   },

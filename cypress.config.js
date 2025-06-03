@@ -9,7 +9,8 @@ module.exports = defineConfig({
     specPattern: '**/*.{cy.js,feature}',
     env: {
       filterSpecs: true,
-      filterSpecsMixedMode : 'hide'
+      filterSpecsMixedMode : 'hide',
+      demoBlazeUrl: 'https://demoblaze.com/'
     },
     async setupNodeEvents(on, config) {
       const createEsbuildPlugin = require('@badeball/cypress-cucumber-preprocessor/esbuild').createEsbuildPlugin
